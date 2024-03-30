@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <h1>Edit Listing</h1>
+    <br>
+    <form method="POST" action="/listings/<%= listing.id %>/?_method=PUT">
+ 
+        <div>
+            <label for="title" class="form-label">
+                Title
+            </label>
+
+            <input type="text" placeholder="Title" name="listing[title]" value="<%= listing.title %>" class="form-control">
+
+        </div>
+        <br>
+        <div>
+            <label for="description" class="form-label">
+              description
+            </label>
+
+            <input type="text" placeholder="description" name="listing[description]" class="form-control" value="<%= listing.description %>">
+        </div>
+        <br>
+
+        
+        <div>
+            <label for="image" class="form-label">
+             image
+            </label>
+
+            <input type="text" placeholder="image" name="listing[image]" class="form-control" value="<%= listing.image %>">
+        </div>
+        <br>
+        <div>
+            <label for="country" class="form-label">
+              Country
+            </label>
+
+            <input type="text" placeholder="country" name="listing[country]" class="form-control" value="<%= listing.country %>">
+        </div>
+        <div>
+            <label for="price" class="form-label" >
+                price
+              </label>
+
+              <input type="number" placeholder="price" name="listing[price]" class="form-control" value="<%= listing.price  %>">
+          </div>
+          <br>
+          <div>
+              <label for="location" class="form-label">
+                 Location
+              </label>
+
+              <input type="text" placeholder="loaction" name="listing[location]" class="form-control" value="<%= listing.loaction %>"  >
+          </div>
+          <br>
+
+        
+        <button class="btn btn-danger" >Submit</button>
+    </form>
+</body>
