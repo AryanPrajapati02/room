@@ -58,8 +58,9 @@ app.use(methodOverride("_method"));
 
 
 
-app.get("/", (req, res) => {
-  res.render("home.ejs");
+app.get("/", async (req, res) => {
+  const allListings = await  Listing.find({})
+  res.render("listings/home.ejs" ,{allListings});
 });
 
 
