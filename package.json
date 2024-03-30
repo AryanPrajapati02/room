@@ -1,5 +1,5 @@
 {
-  "engines":{
+  "engines": {
     "node": "20.11.0"
   },
   "name": "major-project",
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "ejs-mate": "^4.0.0",
     "express": "^4.19.2",

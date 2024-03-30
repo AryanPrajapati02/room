@@ -7,15 +7,15 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync =require("./utils/wrapAsync.js")
 const ExpressError = require("./utils/ExpressError.js")
-const {listingSchema , reviewSchema} = require("./schema.js")
+// const {listingSchema , reviewSchema} = require("./schema.js")
 const Review = require("./models/review.js")
 
 app.use(express.static(path.join(__dirname, "/public")))
 app.engine("ejs" , ejsMate)
 
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/roombook";
-const MONGO_URL = process.env.DB_URI;
+const MONGO_URL = "mongodb://127.0.0.1:27017/roombook";
+// const MONGO_URL = process.env.DB_URI;
 
 
 main()
@@ -36,30 +36,30 @@ app.use(express.urlencoded({ extended: true })); //id ke liye
 app.use(methodOverride("_method"));
 
 
-const validateListing =(req ,res, next)=>{
-  let {error} = listingSchema.validate(req.body)
-  if (error){
-    let msg = error.details.map(el => el.message).join(",")
-    throw new ExpressError(msg , 400)
-  } else{
-    next()
-  }
-}
+// const validateListing =(req ,res, next)=>{
+//   let {error} = listingSchema.validate(req.body)
+//   if (error){
+//     let msg = error.details.map(el => el.message).join(",")
+//     throw new ExpressError(msg , 400)
+//   } else{
+//     next()
+//   }
+// }
 
-const validateReview =(req ,res, next)=>{
-  let {error} = reviewSchema.validate(req.body)
-  if (error){
-    let msg = error.details.map(el => el.message).join(",")
-    throw new ExpressError(msg , 400)
-  } else{
-    next()
-  }
-}
+// const validateReview =(req ,res, next)=>{
+//   let {error} = reviewSchema.validate(req.body)
+//   if (error){
+//     let msg = error.details.map(el => el.message).join(",")
+//     throw new ExpressError(msg , 400)
+//   } else{
+//     next()
+//   }
+// }
 
 
 
 app.get("/", (req, res) => {
-  res.send("Hi, I am root");
+  res.render("home.ejs");
 });
 
 
@@ -77,10 +77,10 @@ app.get("/listings/new" , wrapAsync((req , res)=>{
 }))
 app.post("/listings" , wrapAsync(async (req , res ,next)=>{
   
-  let result = listingSchema.validate(req.body)
-  if(result.error){
-    throw new ExpressError(result.error.message , 400)
-  }
+  // let result = listingSchema.validate(req.body)
+  // if(result.error){
+  //   throw new ExpressError(result.error.message , 400)
+  // }
   const newListing = new Listing(req.body.listing)
   await newListing.save()
   
